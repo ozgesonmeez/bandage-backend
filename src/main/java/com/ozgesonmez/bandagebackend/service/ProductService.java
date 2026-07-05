@@ -76,4 +76,8 @@ public class ProductService {
                 .findById(id)
                 .orElseThrow(() -> new ProductNotFoundException(id));
     }
+
+    public Product save(Product product) {
+        return productRepository.save(product);
+    }
 }

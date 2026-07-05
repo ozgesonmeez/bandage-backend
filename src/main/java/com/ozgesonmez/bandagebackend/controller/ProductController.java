@@ -47,4 +47,9 @@ public class ProductController {
     public Product getProductById(@PathVariable Long id) {
         return productService.findById(id);
     }
+
+    @PostMapping("/products")
+    public Product createProduct(@RequestBody Product product) {
+        return productService.save(product);
+    }
 }

@@ -1,6 +1,7 @@
 package com.ozgesonmez.bandagebackend.service;
 
 import com.ozgesonmez.bandagebackend.entity.Category;
+import com.ozgesonmez.bandagebackend.exception.CategoryNotFoundException;
 import com.ozgesonmez.bandagebackend.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,6 @@ public class CategoryService {
     public Category findById(Long id) {
         return categoryRepository
                 .findById(id)
-                .orElseThrow(() -> new RuntimeException("Category not found"));
+                .orElseThrow(() -> new CategoryNotFoundException(id));
     }
 }

@@ -3,6 +3,7 @@ package com.ozgesonmez.bandagebackend.service;
 import com.ozgesonmez.bandagebackend.entity.Product;
 import com.ozgesonmez.bandagebackend.repository.ProductRepository;
 import org.springframework.stereotype.Service;
+import com.ozgesonmez.bandagebackend.exception.ProductNotFoundException;
 
 import java.util.Comparator;
 import java.util.List;
@@ -73,6 +74,6 @@ public class ProductService {
     public Product findById(Long id) {
         return productRepository
                 .findById(id)
-                .orElseThrow(() -> new RuntimeException("Product not found"));
+                .orElseThrow(() -> new ProductNotFoundException(id));
     }
 }

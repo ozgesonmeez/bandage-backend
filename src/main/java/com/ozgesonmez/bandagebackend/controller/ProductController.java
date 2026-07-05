@@ -18,15 +18,18 @@ public class ProductController {
 
     @GetMapping("/products")
     public ProductResponse getProducts(
+            @RequestParam(required = false) String filter,
+            @RequestParam(required = false) String sort,
             @RequestParam(required = false) Integer limit,
-            @RequestParam(required = false) Integer offset
+            @RequestParam(required = false) Integer offset,
+            @RequestParam(required = false, name = "category") Long categoryId
     ) {
-        List<Product> products = productService.findAll();
+        List<Product> filteredProducts = productService.findAll(filter, sort, categoryId);
 
-        int safeLimit = limit == null ? products.size() : limit;
         int safeOffset = offset == null ? 0 : offset;
+        int safeLimit = limit == null ? filteredProducts.size() : limit;
 
-        List<Product> paginatedProducts = products
+        List<Product> paginatedProducts = filteredProducts
                 .stream()
                 .skip(safeOffset)
                 .limit(safeLimit)
@@ -34,7 +37,7 @@ public class ProductController {
 
         return new ProductResponse(
                 paginatedProducts,
-                products.size(),
+                filteredProducts.size(),
                 safeLimit,
                 safeOffset
         );

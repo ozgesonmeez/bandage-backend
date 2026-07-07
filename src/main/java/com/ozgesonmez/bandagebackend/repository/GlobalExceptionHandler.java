@@ -38,4 +38,17 @@ public class GlobalExceptionHandler {
                         "message", exception.getMessage()
                 ));
     }
+    @ExceptionHandler(EmailAlreadyExistsException.class)
+    public ResponseEntity<Map<String, Object>> handleEmailAlreadyExists(
+            EmailAlreadyExistsException exception
+    ) {
+        return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(Map.of(
+                        "timestamp", LocalDateTime.now(),
+                        "status", 409,
+                        "error", "Conflict",
+                        "message", exception.getMessage()
+                ));
+    }
 }

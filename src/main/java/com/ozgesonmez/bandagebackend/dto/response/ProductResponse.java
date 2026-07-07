@@ -1,4 +1,4 @@
-package com.ozgesonmez.bandagebackend.dto;
+package com.ozgesonmez.bandagebackend.dto.response;
 
 import com.ozgesonmez.bandagebackend.entity.Product;
 import lombok.AllArgsConstructor;

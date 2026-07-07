@@ -1,6 +1,6 @@
 package com.ozgesonmez.bandagebackend.controller;
 
-import com.ozgesonmez.bandagebackend.dto.ProductResponse;
+import com.ozgesonmez.bandagebackend.dto.response.ProductResponse;
 import com.ozgesonmez.bandagebackend.entity.Product;
 import com.ozgesonmez.bandagebackend.service.ProductService;
 import org.springframework.web.bind.annotation.*;

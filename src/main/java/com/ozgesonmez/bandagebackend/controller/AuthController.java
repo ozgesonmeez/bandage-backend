@@ -6,7 +6,7 @@ import com.ozgesonmez.bandagebackend.dto.response.LoginResponse;
 import com.ozgesonmez.bandagebackend.dto.response.UserResponse;
 import com.ozgesonmez.bandagebackend.service.UserService;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.security.core.Authentication;
 @RestController
 @RequestMapping("/auth")
 @CrossOrigin
@@ -26,5 +26,9 @@ public class AuthController {
     @PostMapping("/login")
     public LoginResponse login(@RequestBody LoginRequest request) {
         return userService.login(request);
+    }
+    @GetMapping("/me")
+    public Authentication me(Authentication authentication) {
+        return authentication;
     }
 }

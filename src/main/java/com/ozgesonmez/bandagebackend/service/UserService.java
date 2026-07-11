@@ -106,4 +106,20 @@ public class UserService {
 
         return new LoginResponse(token, userResponse);
     }
+    public LoginResponse verify(String email) {
+        AppUser user = userRepository.findByEmail(email)
+                .orElseThrow(InvalidCredentialsException::new);
+
+        UserResponse userResponse = new UserResponse(
+                user.getId(),
+                user.getName(),
+                user.getSurname(),
+                user.getEmail(),
+                user.getRole()
+        );
+
+        String renewedToken = jwtService.generateToken(user);
+
+        return new LoginResponse(renewedToken, userResponse);
+    }
 }

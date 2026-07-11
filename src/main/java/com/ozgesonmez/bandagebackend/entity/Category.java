@@ -27,4 +27,6 @@ public class Category {
     private String code;
 
     private Double rating;
+
+    private String img;
 }

@@ -26,9 +26,8 @@ public class ProductController {
     ) {
         List<Product> filteredProducts = productService.findAll(filter, sort, categoryId);
 
-        int safeOffset = offset == null ? 0 : offset;
-        int safeLimit = limit == null ? filteredProducts.size() : limit;
-
+        int safeOffset = offset == null || offset < 0 ? 0 : offset;
+        int safeLimit = limit == null || limit <= 0 ? 25 : limit;
         List<Product> paginatedProducts = filteredProducts
                 .stream()
                 .skip(safeOffset)
